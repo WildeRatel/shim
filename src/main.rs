@@ -1,9 +1,13 @@
 fn main() {
     let args: Vec<String> = std::env::args().collect();
 
-    if args.len() == 2 {
-	println!("{} {}", args[0], args[1]);
+    if args.len() == 3 {
+        println!("{} {}", args[1], args[2]);
     } else {
-        panic!("Not enough arguments were provided!");
+        if args.len() > 3 {
+            panic!("Too many arguments were supplied!");
+        } else {
+            panic!("Not enough arguments were supplied!");
+        }
     }
 }
