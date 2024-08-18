@@ -9,9 +9,7 @@ fn main() {
         }
     }
 
-    if args[1][args[1].len() - 5..args[1].len()].contains(".txt") {
-        println!("Check pass!");
-    } else {
-        println!("Check fail!");
+    if args[1][args[1].len() - 5..args[1].len()].contains(".txt") != true {
+        panic!("Not a text file!");
     }
 }
