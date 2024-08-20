@@ -9,8 +9,19 @@ fn main() {
         }
     }
 
-    if args[1][args[1].len() - 5..args[1].len()].contains(".txt") != true {
-        panic!("Not a text file!");
+    println!("Are you sure that you want to permanently scramble this file? y/n");
+
+    let mut final_check = String::new();
+    std::io::stdin()
+        .read_line(&mut final_check)
+        .expect("Failed to read user input!");
+
+    let yes_options: Vec<&str> = vec!["y", "yes"];
+
+    if yes_options.contains(&final_check.trim()) {
+        println!("SCRAM!");
+    } else {
+        println!("NOT SCRAMMING!");
     }
 }
 
