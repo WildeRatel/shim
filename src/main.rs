@@ -1,3 +1,8 @@
+#[derive(Hash)]
+struct Hashable {
+    hash: String,
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
 
@@ -22,6 +27,13 @@ fn main() {
         println!("SCRAM!");
     } else {
         println!("NOT SCRAMMING!");
+    }
+
+    let lines: Vec<String> = shim::read_lines(&args[1]);
+    for i in lines {
+        let k = Hashable { hash: i };
+        let hash = shim::make_hash(&k);
+        println!("{}", hash);
     }
 }
 
