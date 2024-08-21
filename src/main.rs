@@ -49,6 +49,10 @@ fn main() {
         final_hash.push(hash.to_string());
     }
     std::fs::remove_file(&args[1]).expect("Failed to read file!");
+    let mut new_file = File::create(&args[1]).expect("Failed to create file!");
+    for i in final_hash {
+        writeln!(new_file, "{}", i).expect("Failed to write to file!");
+    }
 }
 
 //Added this line to change the version lol

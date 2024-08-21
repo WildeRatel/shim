@@ -1,4 +1,3 @@
-use std::fs::read_to_string;
 use std::hash::{DefaultHasher, Hasher};
 
 pub fn make_hash<T: std::hash::Hash>(t: &T) -> u64 {
