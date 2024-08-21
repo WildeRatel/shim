@@ -1,3 +1,7 @@
+use std::fs::{File, OpenOptions};
+use std::io::{Read, Write};
+use std::process::exit;
+
 #[derive(Hash)]
 struct Hashable {
     hash: String,
@@ -27,14 +31,24 @@ fn main() {
         println!("SCRAM!");
     } else {
         println!("NOT SCRAMMING!");
+        exit(0);
     }
 
-    let lines: Vec<String> = shim::read_lines(&args[1]);
-    for i in lines {
-        let k = Hashable { hash: i };
-        let hash = shim::make_hash(&k);
+    let file_content = std::fs::read_to_string(&args[1]).unwrap();
+
+    let mut hashed_file = Hashable {
+        hash: String::new(),
+    };
+
+    let mut final_hash: Vec<String> = Vec::new();
+    for i in file_content.split("\n") {
+        hashed_file.hash = i.to_string();
+
+        let hash = shim::make_hash(&hashed_file);
         println!("{}", hash);
+        final_hash.push(hash.to_string());
     }
+    std::fs::remove_file(&args[1]).expect("Failed to read file!");
 }
 
 //Added this line to change the version lol
