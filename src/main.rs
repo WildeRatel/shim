@@ -26,3 +26,4 @@ fn main() {
 }
 
 //Added this line to change the version lol
+//IMPORTANT NOTE: Currently this only scrambles text files behond recognition <3
